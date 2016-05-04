@@ -8,8 +8,8 @@ var jsonfile = require('jsonfile')
 var bodyParser = require('body-parser');
 var app = express();
 
-const server = app.listen(3000, function(){
-  console.log('listening on *:3000');
+const server = app.listen(8000, function(){
+  console.log('listening on *:8000');
 });
 
 const io = require('socket.io')(server);
@@ -39,4 +39,12 @@ app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
 	res.render('pages/index');
+});
+
+app.get('/traditional', function(req, res) {
+	res.render('pages/traditional');
+});
+
+app.get('/revised', function(req, res) {
+	res.render('pages/revised');
 });
