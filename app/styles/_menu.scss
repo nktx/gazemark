@@ -49,11 +49,20 @@ $menu-color-hover: lighten($menu-color-main, 10%);
 	&:hover {
 		background-color: $menu-color-hover;
 	}
+
+	&.selected {
+		background-color: #34495E;
+		color: #FFF;
+	}
 }
 
 .submenu {
 	transform: rotate(0);
 	z-index: 10;
+
+	&.hidden {
+		visibility: hidden;
+	}
 }
 
 // Menu-item Position Adjustment
