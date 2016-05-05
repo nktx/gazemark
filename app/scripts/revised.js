@@ -1,6 +1,7 @@
 var marginThreshold = 85;
 var submenuPositionX = 0;
 var submenuPositionY = 0;
+var menuOffset = 100*Math.SQRT2;
 
 // Submenu Trigger
 // ------------------------------
@@ -8,8 +9,6 @@ var submenuPositionY = 0;
 $('.menu-block > .menu > .menu-item').on('mouseleave', function() {
 	var $this = $(this);
 	var d = distance(window.x, window.y, menu.positionX, menu.positionY);
-
-	console.log(window.x, window.y, menu.positionX, menu.positionY, d);
 
 	if (d >= marginThreshold) {
 		$this.addClass('intended');
@@ -22,12 +21,8 @@ $('.menu-block > .menu > .menu-item').on('mouseleave', function() {
 			$('.submenu').addClass('hidden');
 			$this.children('.submenu').removeClass('hidden');
 
-			submenuPositionX = $this.children('.submenu').offset().left + 140;
-			submenuPositionY = $this.children('.submenu').offset().top + 140;
-
-			console.log($this.children('.submenu').offset().left + 140);
-			console.log($this.children('.submenu').offset().top + 140);
-
+			submenuPositionX = $this.children('.submenu').offset().left + menuOffset;
+			submenuPositionY = $this.children('.submenu').offset().top + menuOffset;
 		}, 500));
 
 	}
