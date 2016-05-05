@@ -16,6 +16,8 @@ menu = function(mode = false) {
 		this.mode = false;
 		$('#menu-status').text('OFF');
 		$('.menu-block').fadeOut();
+
+		$('.selectable').removeClass('selected');
 	};
 };
 
