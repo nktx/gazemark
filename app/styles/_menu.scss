@@ -1,6 +1,8 @@
 $menu-size: 200px;
-$menu-color-1: #D0D0D0;
-$menu-color-2: #DDDDDD;
+$menu-color-main: #DEDEDE;
+$menu-color-1: lighten($menu-color-main, 3%);
+$menu-color-2: $menu-color-main;
+$menu-color-hover: lighten($menu-color-main, 10%);
 
 // Main menu
 // ------------------------------
@@ -22,6 +24,9 @@ $menu-color-2: #DDDDDD;
 
 	position: absolute;
 	transform: rotate(45deg);
+
+	color: #333;
+	font-family: 'Inconsolata';
 }
 
 .menu-text {
@@ -37,12 +42,12 @@ $menu-color-2: #DDDDDD;
 	padding-top: ($menu-size/4)-10;
 
 	box-sizing: border-box;	
-	border: #AAAAAA 1px solid;
+	border: #FFF 1px solid;
 	
 	transition: background-color .2s ease-in;
 
 	&:hover {
-		background-color: #EFEFEF;
+		background-color: $menu-color-hover;
 	}
 }
 
