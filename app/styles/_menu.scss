@@ -2,7 +2,7 @@ $menu-size: 200px;
 $menu-color-main: #DEDEDE;
 $menu-color-1: lighten($menu-color-main, 3%);
 $menu-color-2: $menu-color-main;
-$menu-color-hover: lighten($menu-color-main, 10%);
+$menu-color-intend: lighten($menu-color-main, 10%);
 
 // Main menu
 // ------------------------------
@@ -46,8 +46,8 @@ $menu-color-hover: lighten($menu-color-main, 10%);
 	
 	transition: background-color .2s ease-in;
 
-	&:hover {
-		background-color: $menu-color-hover;
+	&.intended {
+		background-color: $menu-color-intend;
 	}
 
 	&.selected {

@@ -3,6 +3,7 @@
 
 $('.menu-block > .menu > .menu-item').on('mouseover', function () {
 	var $this = $(this);
+	$this.addClass('intended');
 
 	if ($this.prop('hoverTimeout')) {
 		$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
@@ -16,6 +17,7 @@ $('.menu-block > .menu > .menu-item').on('mouseover', function () {
 
 $('.menu-block > .menu > .menu-item').on('mouseleave', function() {
 	var $this = $(this);
+	$this.removeClass('intended');
 	$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
 
 	$('.submenu').addClass('hidden');
@@ -26,6 +28,7 @@ $('.menu-block > .menu > .menu-item').on('mouseleave', function() {
 
 $('.selectable').on('mouseover', function () {
 	var $this = $(this);
+	$this.addClass('intended');
 
 	if ($this.prop('hoverTimeout')) {
 		$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
@@ -39,5 +42,6 @@ $('.selectable').on('mouseover', function () {
 
 $('.selectable').on('mouseleave', function() {
 	var $this = $(this);
+	$this.removeClass('intended');
 	$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
 });
