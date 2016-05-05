@@ -1,0 +1,103 @@
+$menu-size: 200px;
+$menu-color-1: #D0D0D0;
+$menu-color-2: #DDDDDD;
+
+// Main menu
+// ------------------------------
+
+.menu-block {
+	position: fixed;
+	left: 0;
+	top: 0;
+
+	margin-left: -$menu-size/2;
+	margin-top: -$menu-size/2;
+
+	display: none;
+}
+
+.menu {
+	height: $menu-size;
+	width: $menu-size;
+
+	position: absolute;
+	transform: rotate(45deg);
+}
+
+.menu-text {
+	transform: rotate(-45deg);
+}
+
+.menu-item {
+	height: 50%;
+	width: 50%;
+
+	position: absolute;
+	text-align: center;
+	padding-top: ($menu-size/4)-10;
+
+	box-sizing: border-box;	
+	border: #AAAAAA 1px solid;
+	
+	transition: background-color .2s ease-in;
+
+	&:hover {
+		background-color: #EFEFEF;
+	}
+}
+
+.submenu {
+	transform: rotate(0);
+	z-index: 10;
+}
+
+// Menu-item Position Adjustment
+// ------------------------------
+
+.menu-item--top {
+	background-color: $menu-color-1;
+	border-radius: 100% 0 0 0;
+	left: 0;
+	top: 0;
+
+		& > .submenu {
+			bottom: 10px;
+			right: 10px;
+		}
+}
+
+.menu-item--right {
+	background-color: $menu-color-2;
+	border-radius: 0 100% 0 0;
+	right: 0;
+	top: 0;
+
+		& > .submenu {
+			bottom: 10px;
+			left: 10px;
+		}
+}
+
+.menu-item--bottom {
+	background-color: $menu-color-1;
+	border-radius: 0 0 100% 0;
+	right: 0;
+	bottom: 0;
+
+		& > .submenu {
+			top: 10px;
+			left: 10px;
+		}
+}
+
+.menu-item--left {
+	background-color: $menu-color-2;
+	border-radius: 0 0 0 100%;
+	left: 0;
+	bottom: 0;
+
+		& > .submenu {
+			top: 10px;
+			right: 10px;
+		}
+}
