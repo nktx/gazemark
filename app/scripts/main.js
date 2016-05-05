@@ -2,6 +2,10 @@ menu = function(mode = false) {
 
 	this.open = function() {
 		if (!this.mode) {
+
+			this.positionX = x;
+			this.positionY = y;
+
 			$('.menu-block')
 				.css('left', x)
 				.css('top', y);
@@ -20,6 +24,12 @@ menu = function(mode = false) {
 		$('.selectable').removeClass('selected');
 	};
 };
+
+function distance(p1x, p1y, p2x, p2y) {
+	var dx = p2x - p1x;
+	var dy = p2y - p1y;
+	return Math.sqrt(dx * dx + dy * dy);
+}
 
 $(function() {
 
