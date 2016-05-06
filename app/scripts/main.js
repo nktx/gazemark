@@ -83,6 +83,7 @@ $(function() {
 			if (recordMode){
 				gestureRecord.end($('.selected').text());
 				console.log(gestureRecord);
+				socket.emit('record', gestureRecord);
 	    }
 			menu.close();
 		}
