@@ -3,6 +3,8 @@ var submenuPositionX = 0;
 var submenuPositionY = 0;
 var menuOffset = 100*Math.SQRT2;
 
+$('#task-interface').text('REVISED');
+
 // Submenu Trigger
 // ------------------------------
 

@@ -6,7 +6,6 @@ Menu = function() {
 		this.positionX = x;
 		this.positionY = y;
 
-		$('#menu-status').text('ON');
 		$('.submenu').addClass('hidden');
 		$('.menu-block')
 			.css('left', x)
@@ -16,16 +15,17 @@ Menu = function() {
 	
 	this.close = function() {
 		this.mode = false;
-		$('#menu-status').text('OFF');
 		$('.menu-block').fadeOut();
 		$('.selectable').removeClass('selected');
 	};
 };
 
 Record = function(x, y) {
-	this.path = [];
-	this.duration = 0;
+	this.interface = $('#task-interface').text();
+	this.subject = $('#task-subject').val();
 	this.result = '';
+	this.duration = 0;
+	this.path = [];
 	this.startTime = Date.now();
 	this.startPosition = {
 		X: x,
@@ -42,6 +42,12 @@ Record = function(x, y) {
 	this.end = function(r) {
 		this.duration = Date.now() - this.startTime;
 		this.result = r;
+
+		$('#task-duration').text(this.duration);
+		$('#task-result').text(this.result);
+
+		console.log(this);
+		socket.emit('record', this);
 	};
 };
 
@@ -52,7 +58,6 @@ function distance(p1x, p1y, p2x, p2y) {
 }
 
 $(function() {
-
 	var allowed = true;
 	var recordMode = false;
 	var gestureRecord;
@@ -86,8 +91,6 @@ $(function() {
 		if (event.keyCode == 90) {
 			if (recordMode){
 				gestureRecord.end($('.selected').text());
-				console.log(gestureRecord);
-				socket.emit('record', gestureRecord);
 	    }
 			menu.close();
 		}
@@ -101,5 +104,4 @@ $(function() {
 			gestureRecord.record(window.x, window.y);
     }
 	});
-
 });

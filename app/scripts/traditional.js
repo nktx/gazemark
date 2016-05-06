@@ -1,3 +1,5 @@
+$('#task-interface').text('TRADITIONAL');
+
 // Submenu Trigger
 // ------------------------------
 
