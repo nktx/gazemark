@@ -1,28 +1,43 @@
-menu = function(mode = false) {
+Menu = function() {
+	this.mode = false;
 
 	this.open = function() {
-		if (!this.mode) {
-
-			this.positionX = x;
-			this.positionY = y;
-
-			$('.submenu').addClass('hidden');
-			$('.menu-block')
-				.css('left', x)
-				.css('top', y);
-		}
-
 		this.mode = true;
+		this.positionX = x;
+		this.positionY = y;
+
 		$('#menu-status').text('ON');
-		$('.menu-block').fadeIn();
+		$('.submenu').addClass('hidden');
+		$('.menu-block')
+			.css('left', x)
+			.css('top', y)
+			.fadeIn();
 	};
 	
 	this.close = function() {
 		this.mode = false;
 		$('#menu-status').text('OFF');
 		$('.menu-block').fadeOut();
-
 		$('.selectable').removeClass('selected');
+	};
+};
+
+Record = function() {
+	this.path = [];
+	this.duration = 0;
+	this.result = '';
+	this.startTime = Date.now();
+
+	this.record = function(x, y) {
+		this.path.push({
+			X: x,
+			Y: y
+		})
+	};
+	
+	this.end = function(r) {
+		this.duration = Date.now() - this.startTime;
+		this.result = r;
 	};
 };
 
@@ -34,13 +49,24 @@ function distance(p1x, p1y, p2x, p2y) {
 
 $(function() {
 
+	var allowed = true;
 	var recordMode = false;
+	var gestureRecord;
 
 	socket = io.connect();
-	menu = new menu();
+	menu = new Menu();
 
-	$(document).keydown(function(event){ 
-		if (event.keyCode == 90) { 			
+	$(document).keydown(function(event){
+
+		// avoid keydown event repeated
+		if (event.repeat != undefined) { allowed = !event.repeat; }
+	  if (!allowed) return;
+	  allowed = false;
+		
+		if (event.keyCode == 90) {
+			if (recordMode){
+				gestureRecord = new Record();
+			}
 			menu.open();
 		}
 
@@ -50,8 +76,14 @@ $(function() {
     }
 	});
 
-	$(document).keyup(function(event){ 
-		if (event.keyCode == 90) {		
+	$(document).keyup(function(event){
+		allowed = true;
+
+		if (event.keyCode == 90) {
+			if (recordMode){
+				gestureRecord.end($('.selected').text());
+				console.log(gestureRecord);
+	    }
 			menu.close();
 		}
 	});
@@ -59,6 +91,10 @@ $(function() {
 	$(document).mousemove(function(e) {
     window.x = e.pageX;
     window.y = e.pageY;
+
+    if (recordMode && menu.mode){
+			gestureRecord.record(window.x, window.y);
+    }
 	});
 
 });
