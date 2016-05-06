@@ -6,6 +6,7 @@ menu = function(mode = false) {
 			this.positionX = x;
 			this.positionY = y;
 
+			$('.submenu').addClass('hidden');
 			$('.menu-block')
 				.css('left', x)
 				.css('top', y);
