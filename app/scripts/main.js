@@ -22,11 +22,15 @@ Menu = function() {
 	};
 };
 
-Record = function() {
+Record = function(x, y) {
 	this.path = [];
 	this.duration = 0;
 	this.result = '';
 	this.startTime = Date.now();
+	this.startPosition = {
+		X: x,
+		Y: y
+	};
 
 	this.record = function(x, y) {
 		this.path.push({
@@ -65,7 +69,7 @@ $(function() {
 		
 		if (event.keyCode == 90) {
 			if (recordMode){
-				gestureRecord = new Record();
+				gestureRecord = new Record(x, y);
 			}
 			menu.open();
 		}
