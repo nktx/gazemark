@@ -45,7 +45,11 @@ Record = function(x, y) {
 		this.result = r;
 
 		$('#task-duration').text(this.duration);
-		$('#task-result').text(this.result[this.result.length - 1]);
+		if (this.result.length >= 1) {
+			$('#task-result').text(this.result[this.result.length - 1]);
+		} else {
+			$('#task-result').text('-');
+		}
 
 		console.log(this);
 		socket.emit('record', this);
