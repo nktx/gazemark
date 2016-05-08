@@ -39,6 +39,7 @@ $('.selectable').on('mouseover', function () {
 	$this.prop('hoverTimeout', setTimeout(function() {
 		$('.selectable').removeClass('selected');
 		$this.addClass('selected');
+		window.selected.push($this.text());
 	}, 1000));
 });
 

@@ -5,6 +5,7 @@ Menu = function() {
 		this.mode = true;
 		this.positionX = x;
 		this.positionY = y;
+		window.selected = [];
 
 		$('.submenu').addClass('hidden');
 		$('.menu-block')
@@ -23,7 +24,7 @@ Menu = function() {
 Record = function(x, y) {
 	this.interface = $('#task-interface').text();
 	this.subject = $('#task-subject').val();
-	this.result = '';
+	this.result = [];
 	this.duration = 0;
 	this.path = [];
 	this.startTime = Date.now();
@@ -44,7 +45,7 @@ Record = function(x, y) {
 		this.result = r;
 
 		$('#task-duration').text(this.duration);
-		$('#task-result').text(this.result);
+		$('#task-result').text(this.result[this.result.length - 1]);
 
 		console.log(this);
 		socket.emit('record', this);
@@ -61,6 +62,7 @@ $(function() {
 	var allowed = true;
 	var recordMode = false;
 	var gestureRecord;
+	window.selected = [];
 
 	socket = io.connect();
 	menu = new Menu();
@@ -90,7 +92,7 @@ $(function() {
 
 		if (event.keyCode == 90) {
 			if (recordMode){
-				gestureRecord.end($('.selected').text());
+				gestureRecord.end(window.selected);
 	    }
 			menu.close();
 		}
