@@ -26,6 +26,23 @@ io.on('connection', function(socket){
 		});
 	});
 
+	socket.on('readfile', function(){
+		var data = [];
+
+		fs.readdir('data/', function(err, filenames) {
+			if (err) {
+				onError(err);
+			}
+
+			filenames.forEach(function(filename) {
+				var file = 'data/' + filename;
+				data.push(jsonfile.readFileSync(file))
+			});
+
+			socket.emit('filedata', data);
+		});			
+	});
+
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 	});
@@ -47,4 +64,8 @@ app.get('/traditional', function(req, res) {
 
 app.get('/revised', function(req, res) {
 	res.render('pages/revised');
+});
+
+app.get('/result', function(req, res) {
+	res.render('pages/result');
 });
