@@ -25,3 +25,20 @@ input {
 		outline: none;
 	}
 }
+
+#task-assignment {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	opacity: 0.1; 
+	font-size: 300px;
+	font-family: 'Gotham';
+
+	&.none {
+		background-color: #354B60;
+		height: 100%;
+		width: 100%;
+	}
+}
