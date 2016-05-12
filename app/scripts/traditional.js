@@ -16,7 +16,7 @@ $('.menu-block > .menu > .menu-item').on('mouseover', function () {
 	$this.prop('hoverTimeout', setTimeout(function() {
 		$('.submenu').addClass('hidden');
 		$this.children('.submenu').removeClass('hidden');
-	}, 500));
+	}, 400));
 });
 
 $('.menu-block > .menu > .menu-item').on('mouseleave', function() {
@@ -43,7 +43,7 @@ $('.selectable').on('mouseover', function () {
 		$this.addClass('selected');
 		audio.play();
 		window.selected.push($this.text());
-	}, 1000));
+	}, 400));
 });
 
 $('.selectable').on('mouseleave', function() {

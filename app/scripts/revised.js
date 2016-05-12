@@ -26,7 +26,7 @@ $('.menu-block > .menu > .menu-item').on('mouseleave', function() {
 
 			submenuPositionX = $this.children('.submenu').offset().left + menuOffset;
 			submenuPositionY = $this.children('.submenu').offset().top + menuOffset;
-		}, 500));
+		}, 100));
 
 	}
 });
@@ -62,7 +62,7 @@ $('.selectable').on('mouseleave', function () {
 			$this.addClass('selected');
 			audio.play();
 			window.selected.push($this.text());
-		}, 1000));
+		}, 100));
 	}
 });
 
