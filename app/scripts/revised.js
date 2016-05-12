@@ -2,6 +2,7 @@ var marginThreshold = 85;
 var submenuPositionX = 0;
 var submenuPositionY = 0;
 var menuOffset = 100*Math.SQRT2;
+var audio = new Audio('assets/pi.ogg');
 
 $('#task-interface').text('REVISED');
 
@@ -59,6 +60,7 @@ $('.selectable').on('mouseleave', function () {
 		$this.prop('hoverTimeout', setTimeout(function() {
 			$('.selectable').removeClass('selected');
 			$this.addClass('selected');
+			audio.play();
 			window.selected.push($this.text());
 		}, 1000));
 	}
