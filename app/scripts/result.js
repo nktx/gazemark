@@ -20,11 +20,12 @@ $(function() {
 		var errorTaskNum = 0;
 		var durationSum = 0;
 		var selectionSum = 0;
-		var taskNum = 48;
+		var taskNum = 0;
 
 		result.forEach(function (data){
-			if (data.subject == '') {
+			if (data.subject == 'jhtang') {
 
+				taskNum++;
 				durationSum += data.duration;
 				selectionSum += data.result.length;
 
