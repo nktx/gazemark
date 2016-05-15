@@ -23,11 +23,7 @@ $(function() {
 		var taskNum = 0;
 
 		result.forEach(function (data){
-			if (data.subject == 'jhtang') {
-
-				taskNum++;
-				durationSum += data.duration;
-				selectionSum += data.result.length;
+			if (data.subject == '') {
 
 				var translatedPath = data.path.map(function(p){
 					return {
@@ -37,6 +33,11 @@ $(function() {
 				});
 
 				if ((data.result.length >= 1) && (data.result.slice(-1)[0] == data.task)) {
+
+					taskNum++;
+					durationSum += data.duration;
+					selectionSum += data.result.length;
+
 					svg.append('path')
 					.attr({
 						'd': line(translatedPath),
@@ -58,7 +59,8 @@ $(function() {
 				}				
 			}
 		});
-
+		
+		console.log("task num: " + taskNum);
 		console.log("error rate (%): " + errorTaskNum*100/taskNum);
 		console.log("mean completion time (ms): " + durationSum/taskNum);
 		console.log("mean selections (/task): " + selectionSum/taskNum);
